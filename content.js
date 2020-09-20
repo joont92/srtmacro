@@ -4,7 +4,7 @@ function injectJs(srcFile) {
     document.getElementsByTagName('head')[0].appendChild(scr);
 }
 
-var dsturl1 = "https://etk.srail.co.kr/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000";
+var dsturl1 = "https://etk.srail.kr/hpg/hra/01/selectScheduleList.do?pageId=TK0101010000";
 
 if (document.URL.substring(0, dsturl1.length) == dsturl1) {
 
@@ -19,9 +19,9 @@ if (document.URL.substring(0, dsturl1.length) == dsturl1) {
 		console.log("first:" + firstSelected);
 
 		if (sessionStorage.getItem('macro') == "true") {
-			$("div.button").append('<a href="#" onclick="macrostop();" style="margin-left:5px;"><img src="' + chrome.extension.getURL('images/btn_stop.png') + '"></a>');
+			$("#search-list").append('<a href="#" onclick="macrostop();" style="margin-left:5px;"><img src="' + chrome.extension.getURL('images/btn_stop.png') + '"></a>');
 		} else {
-			$("div.button").append('<a href="#" onclick="macro();" style="margin-left:5px;"><img src="' + chrome.extension.getURL('images/btn_start.png') + '"></a>');
+			$("#search-list").append('<a href="#" onclick="macro();" style="margin-left:5px;"><img src="' + chrome.extension.getURL('images/btn_start.png') + '"></a>');
 		}
 
 		$("<style>")
@@ -69,17 +69,17 @@ if (document.URL.substring(0, dsturl1.length) == dsturl1) {
 
 				var succeed = false;
 				for (i = 1; i < rows.length; i++) {
-					var columns = $(rows[i]).children('td');
+					var columns = $(rows[i]).children('td');					
 
 					var first = $(columns[5]);
-					var coach = $(columns[6]);
+					var coach = $(columns[6]);					
 
 					if (coachSelected.indexOf(i+"") > -1) {
-						var coachSpecials = coach.children("a");
+						var coachSpecials = coach.children("a");						
 						if (coachSpecials.length != 0) {
 							for (j = 0; j < coachSpecials.length; j++) {
-								name = $(coachSpecials[j]).attr('class');
-								if (name == 'button button-02') {
+								name = $(coachSpecials[j]).attr('class');								
+								if (name == 'btn_small btn_burgundy_dark val_m wx90') {
 									$(coachSpecials[0])[0].click();
 									succeed = true;
 									break;
@@ -94,7 +94,7 @@ if (document.URL.substring(0, dsturl1.length) == dsturl1) {
 						if (firstSpecials.length != 0) {
 							for (j = 0; j < firstSpecials.length; j++) {
 								name = $(firstSpecials[j]).attr('class');
-								if (name == 'button button-02') {
+								if (name == 'btn_small btn_burgundy_dark val_m wx90') {
 									$(firstSpecials[0])[0].click();
 									succeed = true;
 									break;
